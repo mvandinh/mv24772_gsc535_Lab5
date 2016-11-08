@@ -17,7 +17,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
-import assignment4.Critter.CritterShape;
+import assignment5.Critter.CritterShape;
 
 public class Painter {
 
