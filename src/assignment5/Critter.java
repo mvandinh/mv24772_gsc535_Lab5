@@ -511,30 +511,11 @@ public abstract class Critter {
 	/**
 	 * Display the positions of each critter in the world
 	 */
-	public static void displayWorld() {
-		String[][] grid = new String[Params.world_height + 2][Params.world_width + 2]; //generate array (+2 is to account for borders)
-		int i;
-		int j;
-		for(i = Params.world_height + 1; i >=0; i--){ //increment through rows
-			for(j = Params.world_width + 1; j >= 0; j--){ //increment through columns 
-				if((i == Params.world_height + 1) || (i == 0)){
-					if((j == Params.world_width + 1) || (j == 0)){ grid[i][j] = "+";} //for corners
-					else { grid[i][j] = "-";} //for top and bottom rows
-				}
-				else{
-					if((j == Params.world_width + 1) || (j == 0)){ grid[i][j] = "|";} //for left and right columns
-					else {grid[i][j] = " ";} //for empty space
-				}
-			}
-		}
-		for (Critter c: population){		//populate board with Critters
-			grid[c.y_coord + 1][c.x_coord + 1] = c.toString();
-		}
-		for(i = 0; i < Params.world_height + 2; i++){
-			for(j = 0; j < Params.world_width + 2; j++){
-				System.out.print(grid[i][j]);	//print board
-			}
-			System.out.println();
+		public static void displayWorld() {
+		Main.grid.getChildren().clear(); // clean up grid.
+		for (Critter c: population) {
+			Shape s = Painter.getIcon(c.viewShape(), c.viewFillColor(), c.viewOutlineColor()); //get icon for current Critter
+			Main.grid.add(s, c.x_coord, c.y_coord); // add the icon to the grid
 		}
 	}
 }
