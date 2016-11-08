@@ -92,12 +92,13 @@ public class Critter2 extends Critter {
 			total_back += c.genes[4];
 			total_left += c.genes[5] + c.genes[6] + c.genes[7];
 		}
-		System.out.print("" + critter2.size() + " total Critter2    ");
-		System.out.print("" + total_straight / (GENE_TOTAL * 0.01 * critter2.size()) + "% straight   ");
-		System.out.print("" + total_back / (GENE_TOTAL * 0.01 * critter2.size()) + "% back   ");
-		System.out.print("" + total_right / (GENE_TOTAL * 0.01 * critter2.size()) + "% right   ");
-		System.out.print("" + total_left / (GENE_TOTAL * 0.01 * critter2.size()) + "% left   ");
-		System.out.println();
+		String output = new String();
+		output = critter2.size() + " total Craig    ";
+		output += (Math.round(total_straight / (GENE_TOTAL * 0.01 * critter2.size()) * 100) / 100.00) + "% straight   ";
+		output += (Math.round(total_back / (GENE_TOTAL * 0.01 * critter2.size()) * 100) / 100.00) + "% back   ";
+		output += (Math.round(total_right / (GENE_TOTAL * 0.01 * critter2.size()) * 100) / 100.00) + "% right   ";
+		output += (Math.round(total_left / (GENE_TOTAL * 0.01 * critter2.size()) * 100) / 100.00) + "% left   ";
+		Main.results.setText(output);
 	}
 
 	@Override

@@ -78,24 +78,25 @@ public class Critter4 extends Critter {
 		dir = (dir + turn) % 8;
 	}
 
-	public static void runStats(java.util.List<Critter> critter4s) {
+	public static void runStats(java.util.List<Critter> critter4) {
 		int total_straight = 0;
 		int total_left = 0;
 		int total_right = 0;
 		int total_back = 0;
-		for (Object obj : critter4s) {
+		for (Object obj : critter4) {
 			Critter4 c = (Critter4) obj;
 			total_straight += c.genes[0];
 			total_right += c.genes[1] + c.genes[2] + c.genes[3];
 			total_back += c.genes[4];
 			total_left += c.genes[5] + c.genes[6] + c.genes[7];
 		}
-		System.out.print("" + critter4s.size() + " total Critter4s    ");
-		System.out.print("" + total_straight / (GENE_TOTAL * 0.01 * critter4s.size()) + "% straight   ");
-		System.out.print("" + total_back / (GENE_TOTAL * 0.01 * critter4s.size()) + "% back   ");
-		System.out.print("" + total_right / (GENE_TOTAL * 0.01 * critter4s.size()) + "% right   ");
-		System.out.print("" + total_left / (GENE_TOTAL * 0.01 * critter4s.size()) + "% left   ");
-		System.out.println();
+		String output = new String();
+		output = critter4.size() + " total Craig    ";
+		output += (Math.round(total_straight / (GENE_TOTAL * 0.01 * critter4.size()) * 100) / 100.00) + "% straight   ";
+		output += (Math.round(total_back / (GENE_TOTAL * 0.01 * critter4.size()) * 100) / 100.00) + "% back   ";
+		output += (Math.round(total_right / (GENE_TOTAL * 0.01 * critter4.size()) * 100) / 100.00) + "% right   ";
+		output += (Math.round(total_left / (GENE_TOTAL * 0.01 * critter4.size()) * 100) / 100.00) + "% left   ";
+		Main.results.setText(output);
 	}
 
 	@Override

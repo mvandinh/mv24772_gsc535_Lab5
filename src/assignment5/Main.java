@@ -38,6 +38,11 @@ public class Main extends Application {
 	static GridPane worldgrid = new GridPane();
 	static GridPane grid = new GridPane();
 	static GridPane grid2 = new GridPane();
+	static Button update = new Button();
+	static TextField param1 = new TextField();
+	static TextField param2 = new TextField();
+	static Label results = new Label();
+	static ChoiceBox<String> commandsList = new ChoiceBox<String>();
 	
 	private static String myPackage;	// package of Critter file.  Critter cannot be in default pkg.
 	
@@ -56,20 +61,19 @@ public class Main extends Application {
 			worldgrid.setPadding(new Insets(5, 5, 5, 5));
 			worldgrid.setHgap(2);
 			worldgrid.setVgap(2);
-			//grid.setPadding(new Insets(10, 10, 10, 10));
-			grid.setHgap(5);
-			grid.setVgap(5);
-			//grid2.setPadding(new Insets(10, 10, 10, 10));
-			grid2.setHgap(5);
-			grid2.setVgap(5);
+			grid.setPadding(new Insets(5, 5, 5, 5));
+			grid.setHgap(2);
+			grid.setVgap(2);
+			grid2.setPadding(new Insets(5, 5, 5, 5));
+			grid2.setHgap(2);
+			grid2.setVgap(2);
 			
 			// UPDATE BUTTON
-			Button update = new Button("Update");
+			update.setText("Update");
 			GridPane.setConstraints(update, 4, 1);
 			grid.getChildren().add(update);
 			
 			// PARAMETER 1
-			TextField param1 = new TextField();
 			param1.setPromptText("Critter Type");
 			param1.setPrefColumnCount(10);
 			GridPane.setConstraints(param1, 2, 1);
@@ -77,7 +81,6 @@ public class Main extends Application {
 			param1.setText("");
 			
 			// PARAMETER 2
-			TextField param2 = new TextField();
 			param2.setPromptText("(Critter Quantity)");
 			param2.setPrefColumnCount(10);
 			GridPane.setConstraints(param2, 3, 1);
@@ -85,12 +88,11 @@ public class Main extends Application {
         	param2.setText("");
         	
         	// RESULTS WINDOW
-        	Label results = new Label("");
+        	results.setText("");
     		GridPane.setConstraints(results, 1, 1);
     		grid2.getChildren().add(results);
 			
 			// DROP DOWN MENU FOR COMMANDS
-			ChoiceBox<String> commandsList = new ChoiceBox<String>();
 			commandsList.getItems().addAll("step", "seed", "make", "stats", "quit");
 			//set default value
 			commandsList.setValue("make");
@@ -106,30 +108,35 @@ public class Main extends Application {
 		            	param2.setPromptText("n/a");
 		            	param1.setText("");
 		            	param2.setText("");
+		            	results.setText("");
 		        	}
 		        	else if (command.equals("seed")) {
 		        		param1.setPromptText("Seed Number");
 		            	param2.setPromptText("n/a");
 		            	param1.setText("");
 		            	param2.setText("");
+		            	results.setText("");
 		        	}
 		        	else if (command.equals("make")) {
 		        		param1.setPromptText("Critter Type");
 		            	param2.setPromptText("(Critter Count)");
 		            	param1.setText("");
 		            	param2.setText("");
+		            	results.setText("");
 		        	}
 		        	else if (command.equals("stats")) {
 		        		param1.setPromptText("Critter Type");
 		            	param2.setPromptText("n/a");
 		            	param1.setText("");
 		            	param2.setText("");
+		            	results.setText("");
 		        	}
 		        	else { // command.equals("quit") 
 		        		param1.setPromptText("n/a");
 		            	param2.setPromptText("n/a");
 		            	param1.setText("");
 		            	param2.setText("");
+		            	results.setText("");
 		        	}
 		        }
 		    });
