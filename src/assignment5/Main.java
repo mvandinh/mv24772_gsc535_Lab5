@@ -159,8 +159,19 @@ public class Main extends Application {
 	            			}
 			        	}
 			        	else if (command.equals("stats")) {
-			        	// IMPLEMENT ME LATER	
-			        	}
+			        		try {
+			        			List<Critter> critStats = Critter.getInstances(p1);
+			        			Class<?> critClass;
+			        			if (p1.equals("")) {
+			        				throw new Exception();
+			        			}
+	        					critClass = Class.forName(myPackage + "." + p1);
+	            				Method runStats = critClass.getMethod("runStats", List.class);
+	        					runStats.invoke(null, critStats);			
+	        				} catch (ClassNotFoundException e) {
+	        					throw new InvalidCritterException(p1);
+	        				}
+	            		}	
 			        	else { // command.equals("quit") 
 			        		System.out.close();
 			        	}
