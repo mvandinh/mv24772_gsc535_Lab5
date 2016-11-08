@@ -1,4 +1,4 @@
-/* CRITTERS 2 Painter.java
+/* CRITTERS Critter.java
  * EE422C Project 5 submission by
  * Minh Van-Dinh
  * mv24772
@@ -7,7 +7,7 @@
  * gsc535
  * 16475
  * Slip days used: <0>
- * Git URL: https://github.com/mvandinh/mv24772_gsc535_Lab5
+ * Git URL: https://github.com/mvandinh/mv24772_gsc535_Lab4
  * Fall 2016
  */
 
@@ -21,12 +21,13 @@ import assignment5.Critter.CritterShape;
 
 public class Painter {
 
+	
+	static int size = 20;
 	/*
 	 * Returns a square or a circle, according to shapeIndex
 	 */
-	static Shape getIcon(CritterShape shapeIndex,javafx.scene.paint.Color fill, javafx.scene.paint.Color outline) {
+	static void Paint(CritterShape shapeIndex,javafx.scene.paint.Color fill, javafx.scene.paint.Color outline, int x_coord, int y_coord) {
 		Shape s = null;
-		int size = 20;
 		
 		switch(shapeIndex) {
 		case SQUARE: s = new Rectangle(size, size); 
@@ -57,6 +58,14 @@ public class Painter {
 		}
 		// set the outline of the shape
 		s.setStroke(outline); // outline
-		return s;
+		Main.grid.add(s, x_coord, y_coord + 2); // add the shape to the grid.
+		return;
+	}
+	public static void blankgrid(){
+		for(int i = 0; i < Params.world_width; i++){
+			for(int j = 0; j < Params.world_height; j++){
+				Main.grid.add(new Rectangle(size, size), i, j + 2);
+			}
+		}
 	}
 }
