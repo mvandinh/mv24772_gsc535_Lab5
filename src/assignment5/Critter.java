@@ -530,11 +530,11 @@ public abstract class Critter {
 	/**
 	 * Display the positions of each critter in the world
 	 */
-		public static void displayWorld() {
-		Main.grid.getChildren().clear(); // clean up grid.
+	public static void displayWorld() {
+		Painter.blankgrid();
+		//Main.grid.getChildren().clear(); // clean up grid.
 		for (Critter c: population) {
-			Shape s = Painter.getIcon(c.viewShape(), c.viewFillColor(), c.viewOutlineColor()); //get icon for current Critter
-			Main.grid.add(s, c.x_coord, c.y_coord); // add the icon to the grid
+			Painter.Paint(c.viewShape(), c.viewFillColor(), c.viewOutlineColor(), c.x_coord, c.y_coord);
 		}
 	}
 }
