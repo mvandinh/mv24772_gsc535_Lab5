@@ -16,8 +16,8 @@ package assignment5; // cannot be in default package
 import java.lang.reflect.Method;
 import java.util.List;
 
-import assignment4.Critter;
-import assignment4.InvalidCritterException;
+import assignment5.Critter;
+import assignment5.InvalidCritterException;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -27,6 +27,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -36,6 +37,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 	static GridPane worldgrid = new GridPane();
 	static GridPane grid = new GridPane();
+	static GridPane grid2 = new GridPane();
 	
 	private static String myPackage;	// package of Critter file.  Critter cannot be in default pkg.
 	
@@ -46,16 +48,20 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			primaryStage.setTitle("Critter Simulator");
+			Critter.displayWorld();
 			worldgrid.setGridLinesVisible(true);
-			//worldgrid.setPadding(new Insets(5, 5, 5, 5));
-			//worldgrid.setHgap(2);
-			//worldgrid.setVgap(2);
-			grid.setGridLinesVisible(true);
-			grid.setPadding(new Insets(10, 10, 10, 10));
+			grid.setGridLinesVisible(false);
+			grid2.setGridLinesVisible(false);
+			worldgrid.setPadding(new Insets(5, 5, 5, 5));
+			worldgrid.setHgap(2);
+			worldgrid.setVgap(2);
+			//grid.setPadding(new Insets(10, 10, 10, 10));
 			grid.setHgap(5);
 			grid.setVgap(5);
-			
-			primaryStage.setTitle("Critter Simulator");
+			//grid2.setPadding(new Insets(10, 10, 10, 10));
+			grid2.setHgap(5);
+			grid2.setVgap(5);
 			
 			// UPDATE BUTTON
 			Button update = new Button("Update");
@@ -77,10 +83,15 @@ public class Main extends Application {
 			GridPane.setConstraints(param2, 3, 1);
 			grid.getChildren().add(param2);
         	param2.setText("");
+        	
+        	// RESULTS WINDOW
+        	Label results = new Label("");
+    		GridPane.setConstraints(results, 1, 1);
+    		grid2.getChildren().add(results);
 			
 			// DROP DOWN MENU FOR COMMANDS
 			ChoiceBox<String> commandsList = new ChoiceBox<String>();
-			commandsList.getItems().addAll("show", "step", "seed", "make", "stats", "quit");
+			commandsList.getItems().addAll("step", "seed", "make", "stats", "quit");
 			//set default value
 			commandsList.setValue("make");
 			GridPane.setConstraints(commandsList, 1, 1);
@@ -90,13 +101,7 @@ public class Main extends Application {
 		        @Override
 				public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 		            String command = commandsList.getValue();
-		        	if (command.equals("show")) {
-		            	param1.setPromptText("n/a");
-		            	param2.setPromptText("n/a");
-		            	param1.setText("");
-		            	param2.setText("");
-		            }
-		        	else if (command.equals("step")) {
+		        	if (command.equals("step")) {
 		        		param1.setPromptText("(Step Count)");
 		            	param2.setPromptText("n/a");
 		            	param1.setText("");
@@ -135,11 +140,10 @@ public class Main extends Application {
 	            	try {
 	            		String command = commandsList.getValue();
 		            	String p1 = param1.getText();
+		            	p1 = p1.replaceAll("\\s+","");
 		            	String p2 = param2.getText();
-			        	if (command.equals("show")) {
-			        		Critter.displayWorld();
-			            }
-			        	else if (command.equals("step")) {
+		            	p2 = p2.replaceAll("\\s+","");
+			        	if (command.equals("step")) {
 			        		int num_steps = 1;
 	            			if (!p1.equals("")) {
 	            				num_steps = Integer.parseInt(p1);
@@ -147,6 +151,7 @@ public class Main extends Application {
 	            			for (int i = 0; i < num_steps; i++) {
 	            				Critter.worldTimeStep();
 	            			}
+	            			Critter.displayWorld();
 			        	}
 			        	else if (command.equals("seed")) {
 			        		if (!p1.equals("")) {
@@ -155,6 +160,7 @@ public class Main extends Application {
 			        		else {
 			        			throw new Exception();
 			        		}
+			        		Critter.displayWorld();
 			        	}
 			        	else if (command.equals("make")) {
 			        		int num_make = 1;
@@ -164,6 +170,7 @@ public class Main extends Application {
 	            			for (int i = 0; i < num_make; i++) {
 	            				Critter.makeCritter(p1);
 	            			}
+	            			Critter.displayWorld();
 			        	}
 			        	else if (command.equals("stats")) {
 			        		try {
@@ -180,19 +187,19 @@ public class Main extends Application {
 	        				}
 	            		}	
 			        	else { // command.equals("quit") 
-			        		System.out.close();
+			        		System.exit(0);
 			        	}
 	            	} catch (Exception e) {
 	            		String command = commandsList.getValue();
 		            	String p1 = param1.getText();
 		            	String p2 = param2.getText();
-	            		System.out.println("error processing: " + command + " " + p1 + " " + p2);
+	            		results.setText("error processing: " + command + " " + p1 + " " + p2);
 	            	}
 	            }
 	        });
 			VBox vbox = new VBox();
 			vbox.setStyle("-fx-background-color: #FFFFFF;");
-			vbox.getChildren().addAll(grid, worldgrid);
+			vbox.getChildren().addAll(grid, grid2, worldgrid);
 			Scene scene = new Scene(vbox, 540, 540, Color.WHITE);
 			primaryStage.setScene(scene);
 			primaryStage.show();

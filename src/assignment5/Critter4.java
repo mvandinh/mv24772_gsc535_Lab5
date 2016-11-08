@@ -13,8 +13,6 @@
 
 package assignment5;
 
-import assignment4.Critter.CritterShape;
-
 /*
  * Critter4 rests if it has less than 20 energy, otherwise it walks
  * Critter4 does not fight if it has less than 20 energy and it will attempt to run away
