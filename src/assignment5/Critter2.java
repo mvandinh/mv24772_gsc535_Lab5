@@ -1,5 +1,5 @@
-/* CRITTERS 2 Critter2.java
- * EE422C Project 5 submission by
+/* CRITTERS Critter2.java
+ * EE422C Project 4 submission by
  * Minh Van-Dinh
  * mv24772
  * 16475
@@ -7,14 +7,14 @@
  * gsc535
  * 16475
  * Slip days used: <0>
- * Git URL: https://github.com/mvandinh/mv24772_gsc535_Lab5
+ * Git URL: https://github.com/mvandinh/mv24772_gsc535_Lab4
  * Fall 2016
  */
 
 package assignment5;
 
 /*
- * Critter2 as energy decreases, chance of fighting and moving increases
+ * Example critter
  */
 public class Critter2 extends Critter {
 	
@@ -98,5 +98,19 @@ public class Critter2 extends Critter {
 		System.out.print("" + total_right / (GENE_TOTAL * 0.01 * critter2.size()) + "% right   ");
 		System.out.print("" + total_left / (GENE_TOTAL * 0.01 * critter2.size()) + "% left   ");
 		System.out.println();
+	}
+
+	@Override
+	public CritterShape viewShape() {
+		return(CritterShape.DIAMOND);
+	}
+	public javafx.scene.paint.Color viewColor() {
+		return javafx.scene.paint.Color.BLUE;
+	}
+	public javafx.scene.paint.Color viewOutlineColor() { 
+		return viewColor(); 
+	}
+	public javafx.scene.paint.Color viewFillColor() { 
+		return javafx.scene.paint.Color.LIGHTBLUE; 
 	}
 }

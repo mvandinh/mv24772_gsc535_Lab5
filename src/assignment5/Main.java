@@ -16,8 +16,8 @@ package assignment5; // cannot be in default package
 import java.lang.reflect.Method;
 import java.util.List;
 
-import assignment5.Critter;
-import assignment5.InvalidCritterException;
+import assignment4.Critter;
+import assignment4.InvalidCritterException;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -30,10 +30,13 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+	static GridPane worldgrid = new GridPane();
 	static GridPane grid = new GridPane();
+	
 	private static String myPackage;	// package of Critter file.  Critter cannot be in default pkg.
 	
 	static {
@@ -42,7 +45,11 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
-		try {			
+		try {
+			worldgrid.setGridLinesVisible(true);
+			//worldgrid.setPadding(new Insets(5, 5, 5, 5));
+			//worldgrid.setHgap(2);
+			//worldgrid.setVgap(2);
 			grid.setGridLinesVisible(true);
 			grid.setPadding(new Insets(10, 10, 10, 10));
 			grid.setHgap(5);
@@ -183,8 +190,10 @@ public class Main extends Application {
 	            	}
 	            }
 	        });
-			
-			Scene scene = new Scene(grid, 500, 500);
+			VBox vbox = new VBox();
+			vbox.setStyle("-fx-background-color: #FFFFFF;");
+			vbox.getChildren().addAll(grid, worldgrid);
+			Scene scene = new Scene(vbox, 540, 540, Color.WHITE);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			

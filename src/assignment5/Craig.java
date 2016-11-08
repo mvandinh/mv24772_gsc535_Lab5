@@ -1,5 +1,5 @@
-/* CRITTERS 2 Craig.java
- * EE422C Project 5 submission by
+/* CRITTERS Craig.java
+ * EE422C Project 4 submission by
  * Minh Van-Dinh
  * mv24772
  * 16475
@@ -7,7 +7,7 @@
  * gsc535
  * 16475
  * Slip days used: <0>
- * Git URL: https://github.com/mvandinh/mv24772_gsc535_Lab5
+ * Git URL: https://github.com/mvandinh/mv24772_gsc535_Lab4
  * Fall 2016
  */
 
@@ -19,6 +19,18 @@ package assignment5;
 public class Craig extends Critter {
 	
 	@Override
+	public javafx.scene.paint.Color viewColor() {
+		return javafx.scene.paint.Color.YELLOW;
+	}
+	public javafx.scene.paint.Color viewOutlineColor() { 
+		return javafx.scene.paint.Color.LIGHTGOLDENRODYELLOW; 
+	}
+	public javafx.scene.paint.Color viewFillColor() { 
+		return viewColor(); 
+	}
+	public CritterShape viewShape(){
+		return(CritterShape.SQUARE);
+	}
 	public String toString() { return "C"; }
 	
 	private static final int GENE_TOTAL = 24;

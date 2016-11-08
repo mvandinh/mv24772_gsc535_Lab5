@@ -1,5 +1,5 @@
-/* CRITTERS 2 Critter1.java
- * EE422C Project 5 submission by
+/* CRITTERS Critter1.java
+ * EE422C Project 4 submission by
  * Minh Van-Dinh
  * mv24772
  * 16475
@@ -7,15 +7,14 @@
  * gsc535c
  * 16475
  * Slip days used: <0>
- * Git URL: https://github.com/mvandinh/mv24772_gsc535_Lab5
+ * Git URL: https://github.com/mvandinh/mv24772_gsc535_Lab4
  * Fall 2016
  */
 
 package assignment5;
 
 /*
- * Critter1 does not move except from a fight
- * Critter1 has a 50/50 chance to fight during an encounter
+ * Example critter
  */
 public class Critter1 extends Critter {
 	
@@ -39,9 +38,6 @@ public class Critter1 extends Critter {
 			return true;
 		}
 		else{
-			if (look(dir, false) == null) {
-				walk(dir);
-			}
 			return false;
 		}
 	}
@@ -95,5 +91,19 @@ public class Critter1 extends Critter {
 		System.out.print("" + total_right / (GENE_TOTAL * 0.01 * critter1.size()) + "% right   ");
 		System.out.print("" + total_left / (GENE_TOTAL * 0.01 * critter1.size()) + "% left   ");
 		System.out.println();
+	}
+
+	@Override
+	public CritterShape viewShape() {
+		return(CritterShape.STAR);
+	}
+	public javafx.scene.paint.Color viewColor() {
+		return javafx.scene.paint.Color.RED;
+	}
+	public javafx.scene.paint.Color viewOutlineColor() { 
+		return viewColor(); 
+	}
+	public javafx.scene.paint.Color viewFillColor() { 
+		return javafx.scene.paint.Color.ORANGE; 
 	}
 }

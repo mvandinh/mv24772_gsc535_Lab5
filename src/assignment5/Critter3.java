@@ -1,5 +1,5 @@
-/* CRITTERS 2 Critter3.java
- * EE422C Project 5 submission by
+/* CRITTERS Critter3.java
+ * EE422C Project 4 submission by
  * Minh Van-Dinh
  * mv24772
  * 16475
@@ -7,7 +7,7 @@
  * gsc535
  * 16475
  * Slip days used: <0>
- * Git URL: https://github.com/mvandinh/mv24772_gsc535_Lab5
+ * Git URL: https://github.com/mvandinh/mv24772_gsc535_Lab4
  * Fall 2016
  */
 
@@ -40,9 +40,7 @@ public class Critter3 extends Critter {
 
 	@Override
 	public void doTimeStep() {
-		if (look(dir, true) == null) {	// only runs if it can to save energy
-			run(dir);
-		}
+		run(dir);
 				
 		/* pick a new direction based on our genes */
 		int roll = Critter.getRandomInt(GENE_TOTAL);
@@ -74,5 +72,19 @@ public class Critter3 extends Critter {
 		System.out.print("" + total_right / (GENE_TOTAL * 0.01 * critters3.size()) + "% right   ");
 		System.out.print("" + total_left / (GENE_TOTAL * 0.01 * critters3.size()) + "% left   ");
 		System.out.println();
+	}
+
+	@Override
+	public CritterShape viewShape() {
+		return(CritterShape.TRIANGLE);
+	}
+	public javafx.scene.paint.Color viewColor() {
+		return javafx.scene.paint.Color.PINK;
+	}
+	public javafx.scene.paint.Color viewOutlineColor() { 
+		return javafx.scene.paint.Color.PURPLE;  
+	}
+	public javafx.scene.paint.Color viewFillColor() { 
+		return viewColor();
 	}
 }

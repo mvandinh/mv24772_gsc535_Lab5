@@ -1,5 +1,5 @@
-/* CRITTERS 2 Critter4.java
- * EE422C Project 5 submission by
+/* CRITTERS Critter4.java
+ * EE422C Project 4 submission by
  * Minh Van-Dinh
  * mv24772
  * 16475
@@ -7,11 +7,13 @@
  * gsc535
  * 16475
  * Slip days used: <0>
- * Git URL: https://github.com/mvandinh/mv24772_gsc535_Lab5
+ * Git URL: https://github.com/mvandinh/mv24772_gsc535_Lab4
  * Fall 2016
  */
 
 package assignment5;
+
+import assignment4.Critter.CritterShape;
 
 /*
  * Critter4 rests if it has less than 20 energy, otherwise it walks
@@ -96,5 +98,19 @@ public class Critter4 extends Critter {
 		System.out.print("" + total_right / (GENE_TOTAL * 0.01 * critter4s.size()) + "% right   ");
 		System.out.print("" + total_left / (GENE_TOTAL * 0.01 * critter4s.size()) + "% left   ");
 		System.out.println();
+	}
+
+	@Override
+	public CritterShape viewShape() {
+		return(CritterShape.SQUARE);
+	}
+	public javafx.scene.paint.Color viewColor() {
+		return javafx.scene.paint.Color.GREY;
+	}
+	public javafx.scene.paint.Color viewOutlineColor() { 
+		return javafx.scene.paint.Color.DARKGREY;  
+	}
+	public javafx.scene.paint.Color viewFillColor() { 
+		return viewColor();
 	}
 }
