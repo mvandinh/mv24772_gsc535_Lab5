@@ -1,5 +1,5 @@
 /* CRITTERS Critter2.java
- * EE422C Project 4 submission by
+ * EE422C Project 5 submission by
  * Minh Van-Dinh
  * mv24772
  * 16475
@@ -7,7 +7,7 @@
  * gsc535
  * 16475
  * Slip days used: <0>
- * Git URL: https://github.com/mvandinh/mv24772_gsc535_Lab4
+ * Git URL: https://github.com/mvandinh/mv24772_gsc535_Lab5
  * Fall 2016
  */
 
