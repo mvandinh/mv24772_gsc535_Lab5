@@ -1,4 +1,4 @@
-/* CRITTERS Critter3.java
+/* CRITTERS 2 Critter3.java
  * EE422C Project 5 submission by
  * Minh Van-Dinh
  * mv24772
@@ -7,7 +7,7 @@
  * gsc535
  * 16475
  * Slip days used: <0>
- * Git URL: https://github.com/mvandinh/mv24772_gsc535_Lab4
+ * Git URL: https://github.com/mvandinh/mv24772_gsc535_Lab5
  * Fall 2016
  */
 
@@ -40,7 +40,9 @@ public class Critter3 extends Critter {
 
 	@Override
 	public void doTimeStep() {
-		run(dir);
+		if (look(dir, true) == null) {	// only runs if it can to save energy
+			run(dir);
+		}
 				
 		/* pick a new direction based on our genes */
 		int roll = Critter.getRandomInt(GENE_TOTAL);

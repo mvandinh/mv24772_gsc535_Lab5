@@ -1,4 +1,4 @@
-/* CRITTERS Params.java
+/* CRITTERS 2 Params.java
  * EE422C Project 5 submission by
  * Minh Van-Dinh
  * mv24772
@@ -7,7 +7,7 @@
  * gsc535
  * 16475
  * Slip days used: <0>
- * Git URL: https://github.com/mvandinh/mv24772_gsc535_Lab4
+ * Git URL: https://github.com/mvandinh/mv24772_gsc535_Lab5
  * Fall 2016
  */
 
@@ -30,6 +30,6 @@ public class Params {
 	public static final int photosynthesis_energy_amount = 1;
 	public static final int start_energy = 100;
 	
-	public static final int look_energy_cost = 1;
+	public static final int look_energy_cost = 1;	// ADDED FOR CRITTERS 2 - DELETE?
 
 }

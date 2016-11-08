@@ -1,4 +1,4 @@
-/* CRITTERS Craig.java
+/* CRITTERS 2 Craig.java
  * EE422C Project 5 submission by
  * Minh Van-Dinh
  * mv24772
@@ -7,7 +7,7 @@
  * gsc535
  * 16475
  * Slip days used: <0>
- * Git URL: https://github.com/mvandinh/mv24772_gsc535_Lab4
+ * Git URL: https://github.com/mvandinh/mv24772_gsc535_Lab5
  * Fall 2016
  */
 
