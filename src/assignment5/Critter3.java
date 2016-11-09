@@ -40,7 +40,9 @@ public class Critter3 extends Critter {
 
 	@Override
 	public void doTimeStep() {
-		if (look(dir, true).equals(null)) {
+		String check = new String();
+		check = look(dir, true);
+		if (check == null) {
 			run(dir);
 		}
 		/* pick a new direction based on our genes */

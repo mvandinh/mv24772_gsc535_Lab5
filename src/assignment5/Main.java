@@ -60,8 +60,8 @@ public class Main extends Application {
 			grid.setGridLinesVisible(false);
 			grid2.setGridLinesVisible(false);
 			//worldgrid.setPadding(new Insets(5, 5, 5, 5));
-			worldgrid.setHgap(2);
-			worldgrid.setVgap(2);
+			worldgrid.setHgap(1);
+			worldgrid.setVgap(1);
 			grid.setPadding(new Insets(5, 5, 5, 5));
 			grid.setHgap(2);
 			grid.setVgap(2);
@@ -167,14 +167,11 @@ public class Main extends Application {
 	            			for (int i = 0; i < num_steps; i++) {
 	            				Critter.worldTimeStep();
 	            			}
-	            			if (lastCritter.equals("")) {
-	            				
-	            			}
 	            			List<Critter> critStats = Critter.getInstances(lastCritter);
 			        		Class<?> critClass;
 	        				critClass = Class.forName(myPackage + "." + lastCritter);
 	            			Method runStats = critClass.getMethod("runStats", List.class);
-	        				results.setText(runStats.invoke(null, critStats).toString());			
+	        				results.setText(runStats.invoke(null, critStats).toString());	
 	            			Critter.displayWorld();
 			        	}
 			        	else if (command.equals("seed")) {
@@ -193,6 +190,9 @@ public class Main extends Application {
 	            			}
 	            			for (int i = 0; i < num_make; i++) {
 	            				Critter.makeCritter(p1);
+	            			}
+	            			if (p1.equals("")) {
+	            				throw new Exception();
 	            			}
 	            			lastCritter = p1;
 	            			List<Critter> critStats = Critter.getInstances(p1);
@@ -218,6 +218,7 @@ public class Main extends Application {
 	        				}
 	            		}
 			        	else if (command.equals("clear")) {
+			        		lastCritter = "Algae";
 			        		Critter.clearWorld();
 			        		Critter.displayWorld();
 			        	}
@@ -235,10 +236,12 @@ public class Main extends Application {
 			VBox vbox = new VBox();
 			vbox.setStyle("-fx-background-color: #FFFFFF;");
 			vbox.getChildren().addAll(grid, grid2, worldgrid);
-			Scene scene = new Scene(vbox, 1000, 700, Color.WHITE);
+			Scene scene = new Scene(vbox, 600, 600, Color.WHITE);
 			primaryStage.setScene(scene);
 			primaryStage.show();
-			Critter.displayworld();
+			Critter.displayWorld();
+			Critter.displayWorld();
+			Critter.displayWorld();
 			
 			// Paints the icons.
 			//Painter.paint();

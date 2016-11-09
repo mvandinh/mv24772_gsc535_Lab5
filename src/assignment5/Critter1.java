@@ -14,7 +14,8 @@
 package assignment5;
 
 /*
- * Example critter
+ * Critter1 does not move except from a fight
+ * Critter1 has a 50/50 chance to fight during an encounter
  */
 public class Critter1 extends Critter {
 	
@@ -34,11 +35,14 @@ public class Critter1 extends Critter {
 	
 	public boolean fight(String not_used) {
 		/* 50 - 50 chance to fight */
+		
 		if(Critter.getRandomInt(1) == 1){
 			return true;
 		}
 		else{
-			if (look(dir, false).equals(null)) {
+			String check = new String();
+			check = look(dir, false);
+			if (check == null) {
 				walk(dir);
 			}
 			return false;
