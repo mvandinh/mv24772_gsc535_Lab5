@@ -63,7 +63,7 @@ public class Craig extends Critter {
 		dir = (dir + turn) % 8;
 	}
 
-	public static void runStats(java.util.List<Critter> craigs) {
+	public static String runStats(java.util.List<Critter> craigs) {
 		int total_straight = 0;
 		int total_left = 0;
 		int total_right = 0;
@@ -81,7 +81,7 @@ public class Craig extends Critter {
 		output += (Math.round(total_back / (GENE_TOTAL * 0.01 * craigs.size()) * 100) / 100.00) + "% back   ";
 		output += (Math.round(total_right / (GENE_TOTAL * 0.01 * craigs.size()) * 100) / 100.00) + "% right   ";
 		output += (Math.round(total_left / (GENE_TOTAL * 0.01 * craigs.size()) * 100) / 100.00) + "% left   ";
-		Main.results.setText(output);
+		return output;
 	}
 	
 	@Override

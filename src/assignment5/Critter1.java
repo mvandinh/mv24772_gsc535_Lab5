@@ -73,7 +73,7 @@ public class Critter1 extends Critter {
 		dir = (dir + turn) % 8;
 	}
 
-	public static void runStats(java.util.List<Critter> critter1) {
+	public static String runStats(java.util.List<Critter> critter1) {
 		int total_straight = 0;
 		int total_left = 0;
 		int total_right = 0;
@@ -91,7 +91,7 @@ public class Critter1 extends Critter {
 		output += (Math.round(total_back / (GENE_TOTAL * 0.01 * critter1.size()) * 100) / 100.00) + "% back   ";
 		output += (Math.round(total_right / (GENE_TOTAL * 0.01 * critter1.size()) * 100) / 100.00) + "% right   ";
 		output += (Math.round(total_left / (GENE_TOTAL * 0.01 * critter1.size()) * 100) / 100.00) + "% left   ";
-		Main.results.setText(output);
+		return output;
 	}
 
 	@Override

@@ -43,6 +43,7 @@ public class Main extends Application {
 	static TextField param2 = new TextField();
 	static Label results = new Label();
 	static ChoiceBox<String> commandsList = new ChoiceBox<String>();
+	static String lastCritter = new String();
 	
 	private static String myPackage;	// package of Critter file.  Critter cannot be in default pkg.
 	
@@ -69,7 +70,7 @@ public class Main extends Application {
 			grid2.setVgap(2);
 			
 			// UPDATE BUTTON
-			update.setText("Update");
+			update.setText("Create");
 			GridPane.setConstraints(update, 4, 1);
 			grid.getChildren().add(update);
 			
@@ -93,7 +94,7 @@ public class Main extends Application {
     		grid2.getChildren().add(results);
 			
 			// DROP DOWN MENU FOR COMMANDS
-			commandsList.getItems().addAll("step", "seed", "make", "stats", "quit");
+			commandsList.getItems().addAll("make", "step", "stats", "seed", "clear", "quit");
 			//set default value
 			commandsList.setValue("make");
 			GridPane.setConstraints(commandsList, 1, 1);
@@ -108,35 +109,42 @@ public class Main extends Application {
 		            	param2.setPromptText("n/a");
 		            	param1.setText("");
 		            	param2.setText("");
-		            	results.setText("");
+		            	update.setText("Run");
 		        	}
 		        	else if (command.equals("seed")) {
 		        		param1.setPromptText("Seed Number");
 		            	param2.setPromptText("n/a");
 		            	param1.setText("");
 		            	param2.setText("");
-		            	results.setText("");
+		            	update.setText("Set");
 		        	}
 		        	else if (command.equals("make")) {
 		        		param1.setPromptText("Critter Type");
 		            	param2.setPromptText("(Critter Count)");
 		            	param1.setText("");
 		            	param2.setText("");
-		            	results.setText("");
+		            	update.setText("Create");
 		        	}
 		        	else if (command.equals("stats")) {
 		        		param1.setPromptText("Critter Type");
 		            	param2.setPromptText("n/a");
 		            	param1.setText("");
 		            	param2.setText("");
-		            	results.setText("");
+		            	update.setText("Run");
+		        	}
+		        	else if (command.equals("clear")) {
+		        		param1.setPromptText("n/a");
+		            	param2.setPromptText("n/a");
+		            	param1.setText("");
+		            	param2.setText("");
+		            	update.setText("Clear");
 		        	}
 		        	else { // command.equals("quit") 
 		        		param1.setPromptText("n/a");
 		            	param2.setPromptText("n/a");
 		            	param1.setText("");
 		            	param2.setText("");
-		            	results.setText("");
+		            	update.setText("Quit");
 		        	}
 		        }
 		    });
@@ -158,6 +166,11 @@ public class Main extends Application {
 	            			for (int i = 0; i < num_steps; i++) {
 	            				Critter.worldTimeStep();
 	            			}
+	            			List<Critter> critStats = Critter.getInstances(lastCritter);
+			        		Class<?> critClass;
+	        				critClass = Class.forName(myPackage + "." + lastCritter);
+	            			Method runStats = critClass.getMethod("runStats", List.class);
+	        				results.setText(runStats.invoke(null, critStats).toString());			
 	            			Critter.displayWorld();
 			        	}
 			        	else if (command.equals("seed")) {
@@ -177,6 +190,12 @@ public class Main extends Application {
 	            			for (int i = 0; i < num_make; i++) {
 	            				Critter.makeCritter(p1);
 	            			}
+	            			lastCritter = p1;
+	            			List<Critter> critStats = Critter.getInstances(p1);
+			        		Class<?> critClass;
+	        				critClass = Class.forName(myPackage + "." + p1);
+	            			Method runStats = critClass.getMethod("runStats", List.class);
+	        				results.setText(runStats.invoke(null, critStats).toString());			
 	            			Critter.displayWorld();
 			        	}
 			        	else if (command.equals("stats")) {
@@ -188,11 +207,16 @@ public class Main extends Application {
 			        			}
 	        					critClass = Class.forName(myPackage + "." + p1);
 	            				Method runStats = critClass.getMethod("runStats", List.class);
-	        					runStats.invoke(null, critStats);			
+	        					results.setText(runStats.invoke(null, critStats).toString());
+	        					lastCritter = p1;
 	        				} catch (ClassNotFoundException e) {
 	        					throw new InvalidCritterException(p1);
 	        				}
-	            		}	
+	            		}
+			        	else if (command.equals("clear")) {
+			        		Critter.clearWorld();
+			        		Critter.displayWorld();
+			        	}
 			        	else { // command.equals("quit") 
 			        		System.exit(0);
 			        	}
