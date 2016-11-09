@@ -59,11 +59,11 @@ public class Painter {
 			break;
 		case STAR: s = new Polygon();
 		((Polygon) s).getPoints().addAll(new Double[]{
-				(double) (size/5), (double) (size),
-			    (double) (size/2), (double) 0.0,
-			    (double) (4*size/5), (double) (size),
-			    0.0, (double) (2*size/5),
-			    (double) (size), (double) (2*size/5)});
+				(double) (size/5), (double) (size - 1),
+			    (double) (size/2), (double) (1),
+			    (double) (4*size/5), (double) (size - 1),
+			    (double) 1, (double) (2*size/5),
+			    (double) (size - 1), (double) (2*size/5)});
 			s.setFill(fill);
 			break;
 		}

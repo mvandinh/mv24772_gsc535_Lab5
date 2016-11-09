@@ -204,8 +204,10 @@ public class Main extends Application {
 		        				results.setText(runStats.invoke(null, critStats).toString());			
 		            			Critter.displayWorld();
 			        		} catch (InvalidCritterException e) {
-			        			throw new InvalidCritterException(p1);
-			        		} catch (Exception e) {
+	        					throw new InvalidCritterException(p1);
+	        				} catch (ClassNotFoundException e) {
+	        					throw new InvalidCritterException(p1);
+	        				} catch (Exception e) {
 			        			throw new Exception();
 			        		}
 			        	}
