@@ -177,6 +177,7 @@ public class Main extends Application {
 			        	else if (command.equals("seed")) {
 			        		if (!p1.equals("")) {
 	            				Critter.setSeed(Integer.parseInt(p1));
+	            				results.setText("Seed set to " + p1);	
 	            			}
 			        		else {
 			        			throw new Exception();
@@ -184,23 +185,27 @@ public class Main extends Application {
 			        		Critter.displayWorld();
 			        	}
 			        	else if (command.equals("make")) {
-			        		int num_make = 1;
-	            			if (!p2.equals("")) {
-	            				num_make = Integer.parseInt(p2);
-	            			}
-	            			for (int i = 0; i < num_make; i++) {
-	            				Critter.makeCritter(p1);
-	            			}
-	            			if (p1.equals("")) {
-	            				throw new Exception();
-	            			}
-	            			lastCritter = p1;
-	            			List<Critter> critStats = Critter.getInstances(p1);
-			        		Class<?> critClass;
-	        				critClass = Class.forName(myPackage + "." + p1);
-	            			Method runStats = critClass.getMethod("runStats", List.class);
-	        				results.setText(runStats.invoke(null, critStats).toString());			
-	            			Critter.displayWorld();
+			        		try {
+			        			int num_make = 1;
+		            			if (!p2.equals("")) {
+		            				num_make = Integer.parseInt(p2);
+		            			}
+		            			if ((p1.equals("") || p1.equals("Critter"))) {
+		            				throw new Exception(p1);
+		            			}
+		            			for (int i = 0; i < num_make; i++) {
+		            				Critter.makeCritter(p1);
+		            			}
+		            			lastCritter = p1;
+		            			List<Critter> critStats = Critter.getInstances(p1);
+				        		Class<?> critClass;
+		        				critClass = Class.forName(myPackage + "." + p1);
+		            			Method runStats = critClass.getMethod("runStats", List.class);
+		        				results.setText(runStats.invoke(null, critStats).toString());			
+		            			Critter.displayWorld();
+			        		} catch (Exception e) {
+			        			throw new InvalidCritterException(p1);
+			        		}
 			        	}
 			        	else if (command.equals("stats")) {
 			        		try {
@@ -219,16 +224,21 @@ public class Main extends Application {
 	            		}
 			        	else if (command.equals("clear")) {
 			        		lastCritter = "Algae";
+			        		results.setText("");
 			        		Critter.clearWorld();
 			        		Critter.displayWorld();
 			        	}
 			        	else { // command.equals("quit") 
 			        		System.exit(0);
 			        	}
+	            	} catch (InvalidCritterException e) {
+	            		results.setText(e.toString());
 	            	} catch (Exception e) {
 	            		String command = commandsList.getValue();
 		            	String p1 = param1.getText();
+		            	p1 = p1.replaceAll("\\s+","");
 		            	String p2 = param2.getText();
+		            	p2 = p2.replaceAll("\\s+","");
 	            		results.setText("error processing: " + command + " " + p1 + " " + p2);
 	            	}
 	            }
