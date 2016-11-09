@@ -93,7 +93,7 @@ public class Critter2 extends Critter {
 			total_left += c.genes[5] + c.genes[6] + c.genes[7];
 		}
 		String output = new String();
-		output = critter2.size() + " total Craig    ";
+		output = critter2.size() + " total Critter2    ";
 		output += (Math.round(total_straight / (GENE_TOTAL * 0.01 * critter2.size()) * 100) / 100.00) + "% straight   ";
 		output += (Math.round(total_back / (GENE_TOTAL * 0.01 * critter2.size()) * 100) / 100.00) + "% back   ";
 		output += (Math.round(total_right / (GENE_TOTAL * 0.01 * critter2.size()) * 100) / 100.00) + "% right   ";
