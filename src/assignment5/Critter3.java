@@ -40,8 +40,9 @@ public class Critter3 extends Critter {
 
 	@Override
 	public void doTimeStep() {
-		run(dir);
-				
+		if (look(dir, true).equals(null)) {
+			run(dir);
+		}
 		/* pick a new direction based on our genes */
 		int roll = Critter.getRandomInt(GENE_TOTAL);
 		int turn = 0;

@@ -38,6 +38,9 @@ public class Critter1 extends Critter {
 			return true;
 		}
 		else{
+			if (look(dir, false).equals(null)) {
+				walk(dir);
+			}
 			return false;
 		}
 	}

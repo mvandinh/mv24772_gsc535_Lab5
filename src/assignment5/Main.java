@@ -68,6 +68,7 @@ public class Main extends Application {
 			grid2.setPadding(new Insets(5, 5, 5, 5));
 			grid2.setHgap(2);
 			grid2.setVgap(2);
+			lastCritter = "";
 			
 			// UPDATE BUTTON
 			update.setText("Create");
@@ -166,11 +167,13 @@ public class Main extends Application {
 	            			for (int i = 0; i < num_steps; i++) {
 	            				Critter.worldTimeStep();
 	            			}
-	            			List<Critter> critStats = Critter.getInstances(lastCritter);
-			        		Class<?> critClass;
-	        				critClass = Class.forName(myPackage + "." + lastCritter);
-	            			Method runStats = critClass.getMethod("runStats", List.class);
-	        				results.setText(runStats.invoke(null, critStats).toString());			
+	            			if (!lastCritter.equals("")) {
+	            				List<Critter> critStats = Critter.getInstances(lastCritter);
+				        		Class<?> critClass;
+		        				critClass = Class.forName(myPackage + "." + lastCritter);
+		            			Method runStats = critClass.getMethod("runStats", List.class);
+		        				results.setText(runStats.invoke(null, critStats).toString());			
+	            			}
 	            			Critter.displayWorld();
 			        	}
 			        	else if (command.equals("seed")) {
