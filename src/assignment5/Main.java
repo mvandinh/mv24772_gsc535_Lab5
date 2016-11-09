@@ -59,7 +59,7 @@ public class Main extends Application {
 			worldgrid.setGridLinesVisible(true);
 			grid.setGridLinesVisible(false);
 			grid2.setGridLinesVisible(false);
-			worldgrid.setPadding(new Insets(5, 5, 5, 5));
+			//worldgrid.setPadding(new Insets(5, 5, 5, 5));
 			worldgrid.setHgap(2);
 			worldgrid.setVgap(2);
 			grid.setPadding(new Insets(5, 5, 5, 5));
@@ -235,9 +235,10 @@ public class Main extends Application {
 			VBox vbox = new VBox();
 			vbox.setStyle("-fx-background-color: #FFFFFF;");
 			vbox.getChildren().addAll(grid, grid2, worldgrid);
-			Scene scene = new Scene(vbox, 540, 540, Color.WHITE);
+			Scene scene = new Scene(vbox, 1000, 700, Color.WHITE);
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			Critter.displayworld();
 			
 			// Paints the icons.
 			//Painter.paint();

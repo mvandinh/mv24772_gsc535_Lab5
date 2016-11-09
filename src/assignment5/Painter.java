@@ -22,7 +22,7 @@ import assignment5.Critter.CritterShape;
 public class Painter {
 
 	
-	static int size = 350/(Math.min(Math.max(Params.world_height, Params.world_width), 150)); //grid square size based on world size
+	static int size = 300/(Math.min(Math.max(Params.world_height, Params.world_width), 150)); //grid square size based on world size
 	/*
 	 * Returns a square or a circle, according to shapeIndex
 	 */
@@ -83,7 +83,7 @@ public class Painter {
 					    (double) (size + 3), (double) (size + 3),
 					    0.0, (double) (size + 3) });
 					s.setFill(Color.WHITE);
-					s.setStroke(Color.WHITE);
+					//s.setStroke(Color.WHITE);
 				Main.worldgrid.add(s, i, j);
 			}
 		}
