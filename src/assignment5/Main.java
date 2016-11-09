@@ -187,11 +187,11 @@ public class Main extends Application {
 			        	else if (command.equals("make")) {
 			        		try {
 			        			int num_make = 1;
+		            			if ((p1.equals("") || p1.equals("Critter"))) {
+		            				throw new InvalidCritterException(p1);
+		            			}
 		            			if (!p2.equals("")) {
 		            				num_make = Integer.parseInt(p2);
-		            			}
-		            			if ((p1.equals("") || p1.equals("Critter"))) {
-		            				throw new Exception(p1);
 		            			}
 		            			for (int i = 0; i < num_make; i++) {
 		            				Critter.makeCritter(p1);
@@ -203,8 +203,10 @@ public class Main extends Application {
 		            			Method runStats = critClass.getMethod("runStats", List.class);
 		        				results.setText(runStats.invoke(null, critStats).toString());			
 		            			Critter.displayWorld();
-			        		} catch (Exception e) {
+			        		} catch (InvalidCritterException e) {
 			        			throw new InvalidCritterException(p1);
+			        		} catch (Exception e) {
+			        			throw new Exception();
 			        		}
 			        	}
 			        	else if (command.equals("stats")) {
